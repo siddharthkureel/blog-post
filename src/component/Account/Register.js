@@ -27,7 +27,7 @@ class Register extends Component {
             minLength: 5
           }
         },
-        Address:{
+        address:{
           value:'',
           valid:false,
           validMessage: '',
@@ -75,7 +75,7 @@ class Register extends Component {
   }
   }
   render() {
-    const {name,password,Address,email} =this.state.formData;
+    const {name,password,address,email} =this.state.formData;
     return (
       <div className="wrapper fadeInDown">
         <div id="formContent">
@@ -96,9 +96,9 @@ class Register extends Component {
             value={password.value} onChange={(element) => this.updateForm(element)} className="fadeIn third"/>
             <div>{password.validMessage}</div>
 
-            <input placeholder="Enter Your Address" type="text" name="Address"
-             value={Address.value} onChange={(element) => this.updateForm(element)} className="fadeIn third" />
-            <div>{Address.validMessage}</div>
+            <input placeholder="Enter Your address" type="text" name="address"
+             value={address.value} onChange={(element) => this.updateForm(element)} className="fadeIn third" />
+            <div>{address.validMessage}</div>
 
             <input type='submit' value="submit" />
           </form>

@@ -307,3 +307,62 @@ input[type=text]:placeholder {
 * {
   box-sizing: border-box;
 }
+.post-box{
+  font-size: 18px;
+  font-family: inherit;
+  padding: 10px;
+  width: 100%;
+  resize:none;
+}
+.modify-buttons{
+  float: right;
+  display: flex;
+  transform: translateY(-14px);
+}
+.title-box{
+  margin: 2% 0%;
+  padding: 10px;
+  width: 100%;
+  font-size: 20px;
+  font-family: inherit;
+}
+.title{
+  margin-top: 6px;
+  font-weight: bold;
+}
+.like-count{
+  transform:translateY(20%)
+}
+button:disabled,
+button[disabled]{
+  background: #cccccc;
+  cursor: help;
+}
+#toggle{
+  background: #4267b2;
+  padding: 10px 10px;
+}
+.lds-dual-ring {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 46px;
+  height: 46px;
+  margin: 1px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

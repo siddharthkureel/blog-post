@@ -14,9 +14,11 @@ class Header extends Component {
           <> 
           <li><Link to='/'>{this.props.currentUser.email}</Link></li>
           <li><a href="/">Logout</a></li>
+          <li><Link to="/home">Home</Link></li>
           </>
         }
-        <li><Link to="/">Home</Link></li>
+        
+        <li><Link to="/">Posts</Link></li>
       </ul>
     )
   }
