@@ -5,8 +5,6 @@ import { createStore,applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import history from "./history";
-import 'react-mdl/extra/material.css';
-import 'react-mdl/extra/material.js';
 import { rootReducer } from "./reducers/index";
 import Routes from "./Routes";
 class App extends React.Component{
