@@ -12,19 +12,25 @@
   display: inline-block;
   margin: 4px 2px;
   cursor: pointer;
-  width:100%
 }
-#ul {
+ul {
   list-style-type: none;
-  margin: 0;
-  padding: 0;
+  margin:0px;
+  margin-bottom: 4%;
+  padding:0px 15vw;
   overflow: hidden;
   background-color: #333;
+  text-transform: uppercase;
 }
 
-#ul li {
+ul li {
   float: right;
 }
+ul #logo{
+  float:left;
+  font-size: 18px;
+}
+
 
 #ul li a {
   display: block;
@@ -33,25 +39,50 @@
   padding: 14px 16px;
   text-decoration: none;
 }
-
+.logout{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  background-color: inherit;
+  border: none;
+}
 #ul li a:hover:not(.active) {
   background-color: #111;
 }
-
+.footer{
+  text-align: center;
+}
 .active {
   background-color: #4CAF50;
 }
+
+@media screen and (max-width: 600px) {
+  ul{ padding:0;}
+  ul li{
+    display: block;
+    float: initial;
+  }
+  ul #logo{
+    float: initial;
+  }
+}
+.nav-toggle{
+  padding:10px 0px;
+ display: block;
+ color: #cccccc;
+ cursor:pointer;
+ background-color: #111;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 /* BASIC */
-
-html {
-  background-color: #56baed;
-}
-
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Raleway', sans-serif;
   height: 100vh;
+
 }
 
 a {
@@ -314,6 +345,17 @@ input[type=text]:placeholder {
   width: 100%;
   resize:none;
 }
+.post-area {
+  background:white;
+  margin:20px 0px;
+  padding:20px;
+  -moz-box-shadow:     0 0 3px -2px #3b3b3b;
+  -webkit-box-shadow:  0 0 3px -2px #3b3b3b;
+  box-shadow:          0 0 3px -2px #3b3b3b;
+}
+.post-wrapper{
+  width: 70vw;
+}
 .modify-buttons{
   float: right;
   display: flex;
@@ -354,7 +396,7 @@ button[disabled]{
   height: 46px;
   margin: 1px;
   border-radius: 50%;
-  border: 5px solid #fff;
+  border: 5px solid rgb(0, 38, 255);
   border-color: #fff transparent #fff transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }

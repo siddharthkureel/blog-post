@@ -1,7 +1,33 @@
 import history from '../history';
 import database from "../api/database";
+
+export const loadUser = (url) => async dispatch=>{
+   try {
+      const token = localStorage.getItem('jwtToken');
+      if(token==='' || !token){
+         return
+      }
+      const userInfo = await database.get('/userinfo', { headers: { "Authorization": `Bearer ${token}` } })
+      dispatch({
+            type: 'SIGN_IN',
+            payload: userInfo.data
+         })
+      history.push(url)
+   } catch (error) {
+      
+   }
+}
 //----------------------Post CRUD ---------------------//
-export const post=(text)=>{
+export const showPost = () => async dispatch=>{
+   const posts = await database.get('/posts');
+   const response = posts.data.reverse()
+   dispatch({
+      type:'SHOW_POSTS',
+      payload:response
+   })
+}
+
+export const post =(text)=>{
    return{
       type:'POST',
       payload:text
@@ -15,6 +41,7 @@ export const addPost=(data)=>async (dispatch)=>{
   })
   dispatch(showPost())
 }
+
 export const deletePost=(id)=>async dispatch=>{
    const response= await database.delete(`/posts/${id}`)
    dispatch({
@@ -38,27 +65,35 @@ export const fetchSinglePost=(id)=>async dispatch=>{
       payload: response.data
    })
 }
-export const showPost=()=> async dispatch=>{
-   const response = await database.get('/posts');
-   dispatch({
-      type:'SHOW_POSTS',
-      payload:response.data
-   })
-}
 //---------------------Users-------------------------//
-export const registerUser=(formValues)=>async ()=>{
-   await database.post('/users',formValues)
-  
-   history.push('/signin');
+export const registerUser=(formValues)=>async (dispatch)=>{
+   const response = await database.post('/users',formValues)
+   localStorage.setItem('jwtToken', response.data.token);
+   dispatch({
+      type: 'SIGN_IN', payload: response.data.user
+   })
+   history.push('/home')
 }
 export const signIn=(formValues)=> async dispatch=>{
-
    const response = await database.post('/login',formValues)
-   
-    dispatch({
+   localStorage.setItem('jwtToken', response.data.token);
+   localStorage.setItem('loggedIn','true')
+   dispatch({
       type:'SIGN_IN',payload:response.data.user
    })
    history.push('/home')
+}
+export const logoutUser = () => async (dispatch) => {
+   try {
+      const token = localStorage.getItem('jwtToken');
+      await database.get('/logout',{ headers: { "Authorization": `Bearer ${token}` } })
+      dispatch({ type: 'SIGN_IN' })
+   } catch (error) {
+      
+   } finally {
+     localStorage.removeItem('jwtToken');
+   }
+      
 }
 //---------------------Likes------------------------//
 export const likePost=(postId,userId,userName)=>async dispatch=>{

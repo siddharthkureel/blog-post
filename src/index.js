@@ -8,15 +8,18 @@ import history from "./history";
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
 import { rootReducer } from "./reducers/index";
-
 import Routes from "./Routes";
-const App=()=>{
-   return (
-   <Router history={history} >
-     <Routes/>
-   </Router>
-   )
+class App extends React.Component{
+  
+  render(){
+    return(
+    <Router history={history} >
+        <Routes />
+    </Router>
+    )
+  }
 }
+
 ReactDOM.render(
 <Provider store={createStore(rootReducer,applyMiddleware(thunk))}>
   <App/>

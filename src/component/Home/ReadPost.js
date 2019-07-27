@@ -7,10 +7,17 @@ class ReadPost extends Component {
     this.props.showPost();
   }
   render() {
+    if (!this.props.posts){
+      return <div className="lds-dual-ring"></div>
+    }
     return (
       <div className="center" >
-        <div className="post-area" style={{ width: "60vw" }} >
+        <div className="post-wrapper" >
+         {!this.props.posts.length ?
+         <div>No Posts are posted yet</div>
+         :
         <PostList posts={this.props.posts} />
+        }
         </div>
       </div>
     )

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import  history  from "../../history";
 import { addPost, showPost } from "../../actions";
+import Auth from "../Hoc/Auth";
 import PostList from "./PostList";
 class index extends Component {
   state={
@@ -17,12 +18,12 @@ class index extends Component {
     }else{
        dataToSubmit.post=this.state.textarea;
        dataToSubmit.title= this.state.title;
-      if (!this.props.currentUser){
+      if (!this.props.user){
           history.push('/signin')
       } else {
-       dataToSubmit.userId=this.props.currentUser.id
-       dataToSubmit.name=this.props.currentUser.name
-       dataToSubmit.date = new Date();
+       dataToSubmit.userId=this.props.user.id
+       dataToSubmit.name=this.props.user.name
+       dataToSubmit.date = new Date().toDateString();
        this.props.addPost(dataToSubmit)
       }
       this.setState({textarea:'',title:''})
@@ -36,7 +37,7 @@ class index extends Component {
   }
   renderUserPosts = ()=>{
     let posts = [];
-    const id = !this.props.currentUser ? null :this.props.currentUser.id
+    const id = !this.props.user ? null :this.props.user.id
     if(this.props.posts ){
       posts = this.props.posts.filter(post=>post.userId===id)
     }
@@ -45,10 +46,12 @@ class index extends Component {
   render() {
     return (
       <div className="center" >
-        <div className="post-area" style={{ width:"60vw" }}>
-          <input className="title-box" onChange={this.updateTitle} value={this.state.title} placeholder="Please enter Title"/>
-          <textarea className="post-box" onChange={this.updateTextArea} value={this.state.textarea} placeholder="Please enter Body" rows="10" /><br/>
-          <button className="button" onClick={this.submitForm} >Add Something</button>
+        <div className="post-wrapper" >
+          <div className="post-area">
+            <input className="title-box" onChange={this.updateTitle} value={this.state.title} placeholder="Please enter Title"/>
+            <textarea className="post-box" onChange={this.updateTextArea} value={this.state.textarea} placeholder="Please enter Body" rows="10" /><br/>
+            <button className="button" onClick={this.submitForm} >Add Something</button>
+          </div>
           <PostList posts={this.renderUserPosts() }  />
         </div>
       </div>
@@ -58,9 +61,8 @@ class index extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    currentUser: state.signIn.currentUser,
     posts: state.showPost.posts,
     post:state.addPost
   }
 }
-export default connect(mapStateToProps, {addPost,showPost})(index);
+export default connect(mapStateToProps, {addPost,showPost})(Auth(index));
