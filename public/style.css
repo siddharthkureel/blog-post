@@ -82,7 +82,7 @@ ul #logo{
 body {
   font-family: 'Raleway', sans-serif;
   height: 100vh;
-
+  margin:0px;
 }
 
 a {
