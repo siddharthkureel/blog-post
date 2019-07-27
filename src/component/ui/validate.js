@@ -1,7 +1,6 @@
 export const validate =(data)=>{
    let result=[true,''];
     if (data.validation.email) {
-        console.log('vsd');
         let valid = /\S+@\S+\.\S+/.test(data.value);
         if (!valid) {
             result = [false, 'email is not valid']

@@ -67,8 +67,8 @@ class Post extends React.Component{
             <textarea className="post-box" onChange={this.updateTextArea}  value={this.state.editedText} rows="10"  style={{ width:'100%' }} /><br/>
           </div>
           : <div>
-            <h4 className="title" >{title}</h4>
-            <p style={{ fontSize:'20px' }}>{post}</p>
+            <h1 className="title" >{title}</h1>
+            <p style={{ fontSize:'20px',lineHeight:'35px' }}>{post}</p>
             </div>
           }
             <span>By:<strong>{name}</strong></span>

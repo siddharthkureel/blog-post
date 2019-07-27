@@ -67,21 +67,29 @@ export const fetchSinglePost=(id)=>async dispatch=>{
 }
 //---------------------Users-------------------------//
 export const registerUser=(formValues)=>async (dispatch)=>{
-   const response = await database.post('/users',formValues)
-   localStorage.setItem('jwtToken', response.data.token);
-   dispatch({
-      type: 'SIGN_IN', payload: response.data.user
-   })
-   history.push('/home')
+   try {
+      const response = await database.post('/users',formValues)
+      localStorage.setItem('jwtToken', response.data.token);
+      dispatch({
+         type: 'SIGN_IN', payload: response.data.user
+      })
+      history.push('/home')
+   } catch (error) {
+      alert('email already taken')
+   }
 }
 export const signIn=(formValues)=> async dispatch=>{
-   const response = await database.post('/login',formValues)
-   localStorage.setItem('jwtToken', response.data.token);
-   localStorage.setItem('loggedIn','true')
-   dispatch({
-      type:'SIGN_IN',payload:response.data.user
-   })
-   history.push('/home')
+   try {     
+      const response = await database.post('/login',formValues)
+      localStorage.setItem('jwtToken', response.data.token);
+      localStorage.setItem('loggedIn','true')
+      dispatch({
+         type:'SIGN_IN',payload:response.data.user
+      })
+      history.push('/home')
+   } catch (error) {
+      alert('incorrect username or password')
+   }
 }
 export const logoutUser = () => async (dispatch) => {
    try {
