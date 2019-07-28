@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from "react-redux";
 import LikeComment from "./LikeComment";
+import LinesEllipsis from 'react-lines-ellipsis';
 import { deletePost,fetchSinglePost,editPost } from "../../actions";
 class Post extends React.Component{
   state={
     edit:false,
     editedText:'',
     editedTitle:'',
-    showSaveButton:false
+    showSaveButton:false,
+    read:'more',
+    maxLines:3
   }
   renderButtons(currentUserId,userId,postId){
     if(currentUserId===userId){
@@ -52,10 +55,14 @@ class Post extends React.Component{
       })
     }
   }
-
+  
   updateTextArea=(e)=>this.setState({editedText:e.target.value})
   updateTitle = (e) => this.setState({ editedTitle: e.target.value })
-  
+  handleReadMore=()=>{
+     if(this.state.read==='more'){
+       return this.setState({ maxLines:10000 })
+     }
+  }
   render(){
     const { name, post,title, date, userId, postId }=this.props;
     const getDate = date.split('T');
@@ -68,7 +75,16 @@ class Post extends React.Component{
           </div>
           : <div>
             <h1 className="title" >{title}</h1>
-            <p style={{ fontSize:'20px',lineHeight:'35px' }}>{post}</p>
+            
+            <p className="post-body">
+              <LinesEllipsis
+                text={post}
+                maxLine={this.state.maxLines}
+                ellipsis={(<a href='#' onClick={this.handleReadMore}>...read {this.state.read}</a>)}
+                trimRight
+                basedOn='letters'
+                onReflow={this.handleReflow}
+              /></p>
             </div>
           }
             <span>By:<strong>{name}</strong></span>

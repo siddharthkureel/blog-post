@@ -75,6 +75,11 @@ ul #logo{
  cursor:pointer;
  background-color: #111;
 }
+.post-body{
+  font-size:20px;
+  line-height:35px;
+  white-space: pre-line;
+}
 
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
