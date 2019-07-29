@@ -48,7 +48,7 @@ class index extends Component {
       <div className="center" >
         <div className="post-wrapper" >
           <div className="post-area">
-            <input className="title-box" onChange={this.updateTitle} value={this.state.title} placeholder="Please enter Title"/>
+            <input className="title-box"  onChange={this.updateTitle} value={this.state.title} placeholder="Please enter Title"/>
             <textarea className="post-box" onChange={this.updateTextArea} value={this.state.textarea} placeholder="Please enter Body" rows="10" /><br/>
             <button className="button" onClick={this.submitForm} >Add Something</button>
           </div>

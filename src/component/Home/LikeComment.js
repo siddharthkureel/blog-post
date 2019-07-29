@@ -6,14 +6,15 @@ class LikeComment extends Component {
         like: 'Like',
         count: 0,
         list: [],
-        toggle: false
+        toggle: false,
+        likeList: ''
     }
     async componentDidMount(){
         await this.props.renderLikes(this.props.postId);
         if(this.props.readLike){
             this.setState({
                 count:this.props.readLike.users.length,
-                list:this.props.readLike
+                list:this.props.readLike.users
             })    
         }  
         if (this.props.user && this.props.readLike) {
@@ -36,15 +37,35 @@ class LikeComment extends Component {
             count: count
         })
     }
+    handleLeave = () => this.setState({ likeList: '' })
+    handleHover = () => this.setState({ likeList: this.renderLikeList() })
+    renderLikeList = () => {
+        return <div className="likes__list">{
+                this.state.list.map((item,i)=>{
+                    if(!item.userName){
+                        return (<div>First To like</div>)
+                    }else{
+                        return (<div className="likes__list-item">{i+1}.{item.userName}<br /></div>)
+                    }
+                })
+               }</div>
+    }
     render() {
         return (
             <div>
-                <span className="like-count"> {this.state.count}&nbsp;Likes</span>
+                <div className="likes__wrapper" >
+                    <div className="like-count likes__relavance" 
+                        onMouseOver={this.handleHover} 
+                        onMouseLeave={this.handleLeave}>
+                        {this.state.count}&nbsp;Likes
+                        {this.state.likeList}
+                    </div>
+                </div>
                 {this.props.user===undefined ? 
-                null:
+                    null:
                 <button disabled={this.state.toggle} id='toggle' className="button"
-                onClick={() => this.handleLike(this.props.postId, this.props.user.id, this.props.user.name)}
-                >{this.state.like}
+                    onClick={() => this.handleLike(this.props.postId, this.props.user.id, this.props.user.name)}
+                    >{this.state.like}
                 </button>
                 }
             </div>

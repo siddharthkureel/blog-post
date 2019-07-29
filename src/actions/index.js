@@ -68,6 +68,7 @@ export const fetchSinglePost=(id)=>async dispatch=>{
 //---------------------Users-------------------------//
 export const registerUser=(formValues)=>async (dispatch)=>{
    try {
+     
       const response = await database.post('/users',formValues)
       localStorage.setItem('jwtToken', response.data.token);
       dispatch({

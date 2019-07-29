@@ -77,10 +77,39 @@ ul #logo{
 }
 .post-body{
   font-size:20px;
+  padding-bottom:20px;
   line-height:35px;
   white-space: pre-line;
 }
-
+.editorClassName{
+  border:1px solid grey; 
+  padding:10px;
+}
+.likes__wrapper{
+  display:flex;
+  align-content:center;
+  justify-content:center;
+   
+}
+.likes__relavance{
+  position:relative;
+  padding:0 120px;
+}
+.likes__list{
+  position:absolute;
+  box-sizing: border-box;
+  overflow-y:scroll;
+  max-height:250px;
+  z-index:999;
+  background:white;
+  padding:10px;
+  border:1px solid grey;
+  box-shadow: 0 0 2px 2px grey;
+}
+.likes__list-item{
+  list-style: circle;
+  font-size: 0.8rem;
+}
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 /* BASIC */

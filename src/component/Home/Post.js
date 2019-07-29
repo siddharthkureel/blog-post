@@ -2,12 +2,15 @@ import React from 'react';
 import { connect } from "react-redux";
 import LikeComment from "./LikeComment";
 import LinesEllipsis from 'react-lines-ellipsis';
+
 import { deletePost,fetchSinglePost,editPost } from "../../actions";
+
 class Post extends React.Component{
   state={
     edit:false,
     editedText:'',
     editedTitle:'',
+
     showSaveButton:false,
     read:'more',
     maxLines:3
@@ -56,7 +59,7 @@ class Post extends React.Component{
     }
   }
   
-  updateTextArea=(e)=>this.setState({editedText:e.target.value})
+  updateTextArea = (editorState) => this.setState({ editorState });
   updateTitle = (e) => this.setState({ editedTitle: e.target.value })
   handleReadMore=()=>{
      if(this.state.read==='more'){
@@ -76,7 +79,7 @@ class Post extends React.Component{
           : <div>
             <h1 className="title" >{title}</h1>
             
-            <p className="post-body">
+            <div className="post-body">
               <LinesEllipsis
                 text={post}
                 maxLine={this.state.maxLines}
@@ -84,7 +87,7 @@ class Post extends React.Component{
                 trimRight
                 basedOn='letters'
                 onReflow={this.handleReflow}
-              /></p>
+              /></div>
             </div>
           }
             <span>By:<strong>{name}</strong></span>
