@@ -7,6 +7,7 @@ const Layout = (props) => {
           <div className="body-wrapper" >
               <HeaderNav />
               {props.children}
+              <div className="push"></div>
           </div>
           <FooterNav/>
     </React.Fragment>
