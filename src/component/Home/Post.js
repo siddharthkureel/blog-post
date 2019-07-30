@@ -83,6 +83,7 @@ class Post extends React.Component{
               <LinesEllipsis
                 text={post}
                 maxLine={this.state.maxLines}
+                // eslint-disable-next-line 
                 ellipsis={(<a href='#' onClick={this.handleReadMore}>...read {this.state.read}</a>)}
                 trimRight
                 basedOn='letters'

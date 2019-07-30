@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import  history  from "../../history";
 import { addPost, showPost } from "../../actions";
-import Auth from "../Hoc/Auth";
 import PostList from "./PostList";
 class index extends Component {
   state={
@@ -65,4 +64,4 @@ const mapStateToProps = (state) => {
     post:state.addPost
   }
 }
-export default connect(mapStateToProps, {addPost,showPost})(Auth(index));
+export default connect(mapStateToProps, {addPost,showPost})(index);

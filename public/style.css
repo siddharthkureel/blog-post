@@ -16,10 +16,12 @@
 ul {
   list-style-type: none;
   margin:0px;
-  margin-bottom: 4%;
   padding:0px 15vw;
   overflow: hidden;
-  background-color: #333;
+  background: #485563;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   text-transform: uppercase;
 }
 
@@ -51,9 +53,7 @@ ul #logo{
 #ul li a:hover:not(.active) {
   background-color: #111;
 }
-.footer{
-  text-align: center;
-}
+
 .active {
   background-color: #4CAF50;
 }
@@ -66,6 +66,17 @@ ul #logo{
   }
   ul #logo{
     float: initial;
+  }
+  .modify-buttons{
+    float:none;
+    display: inline;
+    padding:20px 0px;
+  }
+  .post-area{
+    padding-bottom: 50px!important;
+  }
+  .footer{
+    margin-top:10px!important;
   }
 }
 .nav-toggle{
@@ -93,13 +104,15 @@ ul #logo{
 }
 .likes__relavance{
   position:relative;
-  padding:0 120px;
+  padding:0 10px;
 }
 .likes__list{
   position:absolute;
   box-sizing: border-box;
   overflow-y:scroll;
   max-height:250px;
+  min-width: 200px;
+  left:0%;
   z-index:999;
   background:white;
   padding:10px;
@@ -110,15 +123,110 @@ ul #logo{
   list-style: circle;
   font-size: 0.8rem;
 }
+/* Footer */
+
+.footer-distributed {
+  background: #485563;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #29323c, #485563);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: normal 16px sans-serif;
+  padding: 45px 15vw;
+}
+
+.footer-distributed .footer-left p {
+  color: #8f9296;
+  font-size: 14px;
+  margin: 0;
+}
+/* Footer links */
+.footer{
+  margin-top:-90px;
+}
+.footer-distributed p.footer-links {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 0 10px;
+  padding: 0;
+  transition: ease .25s;
+}
+
+.footer-distributed p.footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+  transition: ease .25s;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "·";
+  font-size: 20px;
+  left: 0;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+.footer-distributed .footer-right {
+  float: right;
+  margin-top: 6px;
+  max-width: 180px;
+}
+
+.footer-distributed .footer-right a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background-color: #33383b;
+  border-radius: 2px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+  margin-left: 3px;
+  transition:all .25s;
+}
+
+.footer-distributed .footer-right a:hover{transform:scale(1.1); -webkit-transform:scale(1.1);}
+
+.footer-distributed p.footer-links a:hover{text-decoration:underline;}
+
+/* Media Queries */
+
+@media (max-width: 600px) {
+  .footer-distributed .footer-left, .footer-distributed .footer-right {
+    text-align: center;
+  }
+  .footer-distributed .footer-right {
+    float: none;
+    margin: 0 auto 20px;
+  }
+  .footer-distributed .footer-left p.footer-links {
+    line-height: 1.8;
+  }
+}
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 /* BASIC */
-body {
+body,html {
   font-family: 'Raleway', sans-serif;
-  height: 100vh;
+  height: 100%;
   margin:0px;
 }
-
+.body-wrapper{
+  min-height: 100vh;
+  margin-bottom: 10px;
+}
 a {
   color: #92badd;
   display:inline-block;
@@ -358,7 +466,7 @@ input[type=text]:placeholder {
 }
 
 
-
+/**/
 /* OTHERS */
 
 *:focus {
@@ -420,18 +528,22 @@ button[disabled]{
 }
 .lds-dual-ring {
   display: inline-block;
+  position: absolute;
   width: 64px;
   height: 64px;
+  top:50%;
+  left:50%;
+  transform: translate(-32px,32px)
 }
 .lds-dual-ring:after {
-  content: " ";
+  content: "";
   display: block;
   width: 46px;
   height: 46px;
   margin: 1px;
   border-radius: 50%;
-  border: 5px solid rgb(0, 38, 255);
-  border-color: #fff transparent #fff transparent;
+  border: 5px solid grey;
+  border-color: grey transparent grey transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
 @keyframes lds-dual-ring {

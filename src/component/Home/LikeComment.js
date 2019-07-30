@@ -52,15 +52,16 @@ class LikeComment extends Component {
     }
     render() {
         return (
-            <div>
-                <div className="likes__wrapper" >
-                    <div className="like-count likes__relavance" 
-                        onMouseOver={this.handleHover} 
-                        onMouseLeave={this.handleLeave}>
-                        {this.state.count}&nbsp;Likes
+            <>
+            <div className="likes__wrapper" >
+                <div className="like-count likes__relavance"
+                    onMouseOver={this.handleHover}
+                    onMouseLeave={this.handleLeave}>
+                    {this.state.count}&nbsp;Likes
                         {this.state.likeList}
-                    </div>
                 </div>
+            </div>
+            <div>
                 {this.props.user===undefined ? 
                     null:
                 <button disabled={this.state.toggle} id='toggle' className="button"
@@ -69,6 +70,7 @@ class LikeComment extends Component {
                 </button>
                 }
             </div>
+            </>
         )
     }
 }

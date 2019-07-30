@@ -4,8 +4,10 @@ import FooterNav from '../Navigation/Footer';
 const Layout = (props) => {
   return (
     <React.Fragment>
-          <HeaderNav />
-          {props.children}
+          <div className="body-wrapper" >
+              <HeaderNav />
+              {props.children}
+          </div>
           <FooterNav/>
     </React.Fragment>
   )

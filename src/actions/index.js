@@ -1,7 +1,7 @@
 import history from '../history';
 import database from "../api/database";
 
-export const loadUser = (url) => async dispatch=>{
+export const loadUser = () => async dispatch=>{
    try {
       const token = localStorage.getItem('jwtToken');
       if(token==='' || !token){
@@ -12,7 +12,6 @@ export const loadUser = (url) => async dispatch=>{
             type: 'SIGN_IN',
             payload: userInfo.data
          })
-      history.push(url)
    } catch (error) {
       
    }
