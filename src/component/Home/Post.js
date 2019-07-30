@@ -59,7 +59,7 @@ class Post extends React.Component{
     }
   }
   
-  updateTextArea = (editorState) => this.setState({ editorState });
+  updateTextArea = (e) => this.setState({ editedText:e.target.value });
   updateTitle = (e) => this.setState({ editedTitle: e.target.value })
   handleReadMore=()=>{
      if(this.state.read==='more'){
