@@ -31,7 +31,7 @@ class index extends Component {
   renderError=()=>{
     return alert('Both fields are required, Please type something')
   }
-  componentDidMount(){
+  async componentDidMount(){
     this.props.showPost()
   }
   renderUserPosts = ()=>{

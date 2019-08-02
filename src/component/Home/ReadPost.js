@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PostList from "./PostList";
-import { showPost } from '../../actions/index';
+import { showPost, loadUser } from '../../actions/index';
 class ReadPost extends Component {
-  componentDidMount(){
+  async componentDidMount(){
+    await this.props.loadUser()
     this.props.showPost();
   }
   render() {
@@ -28,4 +29,4 @@ const mapStateToProps = (state)=>{
     posts: state.showPost.posts
   }
 }
-export default connect(mapStateToProps,{showPost})(ReadPost);
+export default connect(mapStateToProps,{showPost, loadUser})(ReadPost);
